@@ -1,79 +1,19 @@
-// const express = require('express');
-// const app = express();
-
-// app.use(express.json()); 
-
-
-
-// app.post('/akshit_post/bfhl', (req, res) => {
-//     const { data } = req.body;
-
-//     const user_id = "AkshitBahl_28102002";
-//     const email = "akshit.bahl2021@vitstudent.ac.in";
-//     const roll_number = "21BIT0012";
-
-//     if (!data || !Array.isArray(data)) {
-//         return res.status(400).json({
-//             is_success: false,
-//             message: 'data format not valid, give in json.'
-//         });
-//     }
-
-//     const numbers = [];
-//     const alphabets = [];
-
-//     data.forEach(item => {
-//         if (/^\d+$/.test(item)) {
-//             numbers.push(item);
-//         } else if (/^[a-zA-Z]$/.test(item)) {
-//             alphabets.push(item);
-//         }
-//     });
-
-//     const highestLowercase = alphabets
-//         .filter(char => char === char.toLowerCase())
-//         .sort()
-//         .reverse()[0] || null;
-
-//     res.json({
-//         is_success: true,
-//         user_id: user_id,
-//         email: email,
-//         roll_number: roll_number,
-//         numbers: numbers,
-//         alphabets: alphabets,
-//         highest_lowercase_alphabet: highestLowercase ? [highestLowercase] : []
-//     });
-// });
-
-
-
-// app.get('/akshit_get/bfhl', (req, res) => {
-//     res.status(200).json({
-//         operation_code: 1
-//     });
-// });
-
-
-
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
-
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+const port = process.env.PORT || 5000;
 
-// Middleware to parse JSON request bodies
+
+
+app.use(cors());
+
 app.use(express.json());
 
-// Utility function for input validation
 function isValidDataArray(data) {
     return Array.isArray(data) && data.every(item => typeof item === 'string' || typeof item === 'number');
 }
 
-// Utility function to extract numbers and alphabets
 function extractNumbersAndAlphabets(data) {
     const numbers = [];
     const alphabets = [];
@@ -89,13 +29,13 @@ function extractNumbersAndAlphabets(data) {
     return { numbers, alphabets };
 }
 
-// Utility function to find the highest lowercase alphabet
+
 function findHighestLowercaseAlphabet(alphabets) {
     const lowercaseAlphabets = alphabets.filter(char => char === char.toLowerCase());
     return lowercaseAlphabets.length > 0 ? [lowercaseAlphabets.sort().reverse()[0]] : [];
 }
 
-// POST route for /bfhl
+
 app.post('/akshit_post/bfhl', (req, res) => {
     try {
         const { data } = req.body;
@@ -172,5 +112,5 @@ app.use((err, req, res, next) => {
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${port}`);
 });
