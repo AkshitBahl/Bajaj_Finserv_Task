@@ -16,23 +16,16 @@ function App() {
     event.preventDefault();
     setError('');
     setResponseData(null);
-  
-    try {
-      // Debugging: Check input value
-      console.log("Input Value:", inputValue);
-      
-      // Parse the input JSON
-      const jsonData = JSON.parse(inputValue);
-      console.log("Parsed JSON Data:", jsonData);
-  
-      // Call the API
-      const response = await axios.post('https://bajaj-finserv-task-dusky.vercel.app/akshit_post/bfhl/', jsonData);
 
-      console.log("API Response:", response.data);
-  
+    try {
+      // Validate JSON
+      const jsonData = JSON.parse(inputValue);
+
+      // Call the API
+      const response = await axios.post('https://your-backend-url.vercel.app/bfhl', jsonData);
+
       setResponseData(response.data);
     } catch (err) {
-      console.error("Error:", err);
       setError('Invalid JSON input');
     }
   };

@@ -36,7 +36,7 @@ function findHighestLowercaseAlphabet(alphabets) {
 }
 
 
-app.post('/akshit_post/bfhl', (req, res) => {
+app.post('/akshit_bahl/bfhl', (req, res) => {
     try {
         const { data } = req.body;
 
@@ -77,7 +77,7 @@ app.post('/akshit_post/bfhl', (req, res) => {
 });
 
 // GET route for /bfhl
-app.get('/akshit_get/bfhl', (req, res) => {
+app.get('/akshit_bahl/bfhl', (req, res) => {
     try {
         res.status(200).json({
             operation_code: 1
